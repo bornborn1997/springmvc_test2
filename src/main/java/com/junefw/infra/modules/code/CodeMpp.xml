@@ -6,29 +6,37 @@
 
 <mapper namespace="com.junefw.infra.modules.code.CodeMpp">
 
-	<resultMap id="resultMapObj"
-		type="com.junefw.infra.modules.code.Code"></resultMap>
+    <resultMap id="resultMapObj" type="com.junefw.infra.modules.code.Code"></resultMap>
 
 	<select id="selectList" resultMap="resultMapObj">
-		SELECT
-		a.ifcgSeq
-		, a.ifcgName
-		, a.ifcgDelNy
-		FROM nct.infrCodeGroup a
-		WHERE 1=1
-		AND ifcgDelNy = 0
+			select
+				ifcgSeq
+				, ifcgName
+				, ifcgDelNy
+			from
+				infrCodeGroup
+	</select>
+	
+	<select id="selectOne" resultMap="resultMapObj">
+			select
+				ifcgSeq
+				,ifcgName
+				,ifcgDelNy
+			from
+				infrCodeGroup
+			where 1=1
+				and ifcgSeq = #{ifcgSeq}
 	</select>
 	
 	<insert id="insert">
-		INSERT INTO infrCodeGroup(
-			ifcgName
-			,ifcgDelNy
-		)VALUES (
-			#{ifcgName}
-			,0		
-		)
-		
-	
+			insert into infrCodeGroup (
+				ifcgName
+				,ifcgDelNy
+			) values (
+				#{ifcgName}
+				,0
+			)
 	</insert>
+	
 	
 </mapper>
